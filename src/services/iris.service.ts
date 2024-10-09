@@ -7,8 +7,8 @@ export interface BaseIrisResponse<T> {
 }
 
 export const callApi = async <T>(url: string, method: string, params: object, body: object): Promise<BaseIrisResponse<T>> => {
-    const apiKey = getApiKey();
     try {
+        const apiKey = getApiKey();
         const response: AxiosResponse<BaseIrisResponse<T>> = await axios({
             method: method,
             url: url,
@@ -21,7 +21,16 @@ export const callApi = async <T>(url: string, method: string, params: object, bo
 
         return response.data;
     } catch (err: any) {
-        return err.response;
+        if (err.response) {
+            return err.response.data;
+        }
+        else {
+            return {
+                status: 'error',
+                message: err.message,
+                data: [],
+            }
+        }
     }
 }
 

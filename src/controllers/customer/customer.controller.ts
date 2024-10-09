@@ -12,7 +12,7 @@ export const list = async (req: Request, res: Response) => {
         {},
     )
     if (resp.status !== "success") {
-        res.status(400).send(resp.message);
+        res.status(400).send({ message: resp.message });
     }
     else
         res.send(resp.data);
@@ -28,7 +28,7 @@ export const get = async (req: Request, res: Response) => {
         {},
     )
     if (resp.status !== "success") {
-        res.status(400).send(resp.message);
+        res.status(400).send({ message: resp.message });
     }
     else
         res.send(resp.data);

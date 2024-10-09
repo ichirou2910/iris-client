@@ -6,7 +6,7 @@ dotenv.config();
 dotenv.config({ path: ".env.local" });
 
 const app: Express = express();
-const port = process.env.PORT;
+const port = process.env.PORT || "5001";
 
 configureRouting(app);
 
